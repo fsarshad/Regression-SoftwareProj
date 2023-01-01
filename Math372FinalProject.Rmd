@@ -1,0 +1,57 @@
+---
+title: "Final Project"
+author: "Mariah Diaz, Faaz Arshad, Nathan Holmes-King, Jeerapaj Daithanawong, Cassia Magsie"
+date: '2022-15-04'
+output: pdf_document
+---
+
+# Make sure you click yes when a window pops up while you're running final()
+# Annotations of our steps and output is in the function file. 
+#A summary is included down below. 
+```{r}
+source("Math372FinalProject.R")
+Final()
+```
+
+The first step of the project compares MSE's of LASSO, Ridge and OLS techniques.
+We are looking for the technique that gives us the lowest MSE. Important to note
+Ridge regression tends to have a model that is less interpretable, however
+lower variance with higher bias. Lasso is preferred for prediction rather than 
+inference so it is important to choose a method with outcome in mind.
+In step two were are testing for outliers and influential points/ points of
+high leverage using Cook's distance. We then remove all outliers for which cooks 
+distance is 4 times the mean of the other points. Visually a plot is added
+with outliers highlighted in red. The third step is where we perform model 
+selection using various metrics(MSE,AIC,BIC,Mallow's CP, and Adjusted R2).
+We used our results to determine which variables among our data set were the 
+most significant. When it came to R-squared and adjusted R-squared we looked 
+for a higher value, while with CP and BIC we were looking for variables that
+gave us a lower value. In the end the model we chose included the variables 
+volatile-acidity, chlorides, total sulfur dioxide, sulphates, and alcohol. Which
+through our analysis we found to be the most significant. (The 5 variables 
+were present at the top of all metric plots.) Step four was performing an
+F-test.With the F-test we are trying to determine whether the linear regression 
+model we have chosen is a better fit to the data than the full model. Our H0 is 
+there is no significant difference between the two models. While the HA: says 
+our chosen model is significantly better. At a significance level of 0.05 we are 
+looking for the p-value of our f-statistic to be less than 0.05 in order to 
+reject the null hypothesis and have evidence to support the new model we have 
+chosen. When we run the f-test on our chosen Wine data set, we are comparing the 
+full model with the reduced model with a select few variables. From the output 
+we can see our p-value is 0.03247 which is less than our significance level of 
+0.05 and we reject the null hypothesis that there is no significant difference 
+between the two models. From this output we have more evidence to go with the 
+reduced chosen model. In the fifth step we perform diagnostics tests. We want to 
+get the expected behavior from the residuals. We have chosen our 5 selected 
+models to see if there is any random fluctuations around 0, if there is any 
+noticeable trend between the residuals, if the spread of the residuals change 
+as a function of the predictors, and if the error terms are iid normal 
+using the 3 diagnostic methods which are linearity, homoscedasticity, 
+and normality. Using linearity, we see a pattern trend on the plot. 
+Homoscedasticity method shows that it is somewhat mostly around 0, and lastly 
+the normality shows the K-S test has p-value 0.04086 that is considered 
+weak evidence for not rejecting the null hypothesis. In the last test we 
+determine which transformations if any are appropriate. We apply Box Cox
+to our data and find for the Wine data set the best lambda value to be -1. 
+We then plot the data to show pre and post transformation. 
+
